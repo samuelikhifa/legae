@@ -107,11 +107,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        {/* <LiveUpdates /> */}
-        {/* <NewsletterSignup
-          isOpen={showNewsletter}
-          onClose={() => setShowNewsletter(false)}
-        /> */}
+      
       </div>
     </Router>
   );
