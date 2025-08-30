@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* Global Styles - Preserve natural spacing while ensuring consistent box-sizing */
+
+/* Universal box-sizing without aggressive reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Minimal normalize - preserve browser defaults for spacing */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* ADD: Prevent mobile layout flash */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background-color: #ffffff;
+  font-weight: 400;
+  /* ADD: Critical mobile fixes */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  min-width: 320px;
+}
+
+/* ADD: Root container fix */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Typography improvements - use :where() for low specificity */
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Only add typography if Tailwind classes aren't present */
+h1:not([class*="text-"]) {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+}
+
+h2:not([class*="text-"]) {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 600;
+}
+
+h3:not([class*="text-"]) {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+p:not([class*="text-"]) {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  line-height: 1.7;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e3a8a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Focus styles - only if Tailwind focus classes aren't present */
+button:not([class*="focus:"]):focus,
+a:not([class*="focus:"]):focus {
+  outline: 2px solid #1e40af;
+  outline-offset: 2px;
+}
+
+/* Remove the aggressive container reset that conflicts with Tailwind */
+/* Tailwind's container class should handle this */
+
+/* Utility classes for common patterns */
+.gradient-primary {
+  background: linear-gradient(135deg, #01215e, #445c8a);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #445c8a, #3a5584);
+}
+
+.text-brand-primary {
+  color: #01215e;
+}
+
+.text-brand-secondary {
+  color: #445c8a;
+}
+
+/* Animation keyframes */
+@keyframes bounce-custom {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.animate-bounce-custom {
+  animation: bounce-custom 2s infinite;
+}
+
+/* Prevent layout shifts */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure buttons maintain their styling */
+button {
+  /* Don't override padding, margin, etc. Let Tailwind handle it */
+  cursor: pointer;
+}
+
+/* Component-specific fixes if needed */
+.legacy54-hero-button {
+  /* Ensure hero buttons get proper padding if Tailwind classes fail */
+  padding: 1rem 2rem !important;
+  min-width: 200px !important;
+}
+
+.legacy54-nav-button {
+  /* Ensure nav buttons get proper padding */
+  padding: 0.75rem 1.5rem !important;
+}
+
+/* Media queries for responsive typography - only when Tailwind isn't handling it */
+@media (max-width: 640px) {
+  h1:not([class*="text-"]) {
+    font-size: 2rem;
+  }
+
+  h2:not([class*="text-"]) {
+    font-size: 1.5rem;
+  }
+
+  p:not([class*="text-"]) {
+    font-size: 0.875rem;
+  }
+}
+
+/* Ensure Framer Motion doesn't conflict */
+[data-framer-component] {
+  transform: none;
+}
+
+/* Emergency fixes - use sparingly */
+.force-padding-fix {
+  padding: revert !important;
+}
+
+.force-margin-fix {
+  margin: revert !important;
+}
+
+/* Ensure proper spacing for components */
+.legacy54-component-spacing {
+  margin-bottom: 1rem;
+}

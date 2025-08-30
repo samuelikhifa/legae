@@ -1,0 +1,213 @@
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+// import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { ArrowRight, Play } from "lucide-react";
+
+interface Slide {
+  id: string;
+  title: string;
+  // subtitle: string;
+  description: string;
+  image: string;
+  ctaText?: string;
+  ctaAction?: () => void;
+}
+
+interface FeaturedSlideProps {
+  slides: Slide[];
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  showControls?: boolean;
+  showIndicators?: boolean;
+  className?: string;
+}
+
+const FeaturedSlide = ({
+  slides,
+  autoPlay = true,
+  autoPlayInterval = 5000,
+  showControls = true,
+  showIndicators = true,
+  className = "",
+}: FeaturedSlideProps) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(autoPlay);
+
+  useEffect(() => {
+    if (!isPlaying || slides.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, slides.length, autoPlayInterval]);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const goToPrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  if (!slides || slides.length === 0) {
+    return (
+      <div className="h-screen bg-gradient-to-br from-[#01215E] to-[#445C8A] flex items-center justify-center">
+        <div className="text-white text-center">
+          <h1 className="text-4xl font-bold mb-4">No slides available</h1>
+          <p className="text-xl opacity-80">
+            Please add slides to display content
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const currentSlideData = slides[currentSlide];
+
+  return (
+    <section className={`relative h-screen overflow-hidden ${className}`}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
+        >
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(${currentSlideData.image})`,
+              backgroundPosition: "center top",
+            }}
+          />
+
+          {/* Overlay */}
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-[#01215E]/80 via-[#445C8A]/70 to-[#001F58]/80" /> */}
+
+          {/* Content */}
+          <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center mt-16">
+            <div className="text-left max-w-4xl">
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+              >
+                {currentSlideData.title}
+
+                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mt-4 text-white/90">
+                  {/* {currentSlideData.subtitle} */}
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 max-w-3xl leading-relaxed"
+              >
+                {currentSlideData.description}
+              </motion.p>
+
+              {currentSlideData.ctaText && (
+                <motion.button
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                  onClick={currentSlideData.ctaAction}
+                  className="px-6.5 py-4 bg-white text-[#01215E] rounded-full font-semibold text-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors duration-300 ml-4"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>{currentSlideData.ctaText}</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Controls */}
+      {showControls && slides.length > 1 && (
+        <>
+          <button
+            onClick={goToPrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 backdrop-blur-sm"
+            aria-label="Previous slide"
+          >
+            {/* <ChevronLeft className="w-6 h-6" /> */}
+          </button>
+
+          <button
+            onClick={goToNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 backdrop-blur-sm"
+            aria-label="Next slide"
+          >
+            {/* <ChevronRight className="w-6 h-6" /> */}
+          </button>
+        </>
+      )}
+
+      {/* Slide Indicators */}
+      {showIndicators && slides.length > 1 && (
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "bg-white scale-125"
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Play/Pause Control */}
+      {autoPlay && slides.length > 1 && (
+        <button
+          onClick={togglePlayPause}
+          className="absolute top-8 right-8 z-30 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 backdrop-blur-sm"
+          aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+        >
+          {isPlaying ? (
+            <div className="w-4 h-4 flex space-x-1">
+              <div className="w-1 h-4 bg-current"></div>
+              <div className="w-1 h-4 bg-current"></div>
+            </div>
+          ) : (
+            <Play className="w-4 h-4" />
+          )}
+        </button>
+      )}
+
+      {/* Responsive Design Enhancements */}
+      <style>{`
+        @media (max-width: 640px) {
+          .featured-slide-content {
+            padding: 1rem;
+          }
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default FeaturedSlide;
