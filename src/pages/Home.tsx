@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // Add this import
 import { ArrowRight, Star, Users, Trophy, Globe } from "lucide-react";
-import Footer from "../components/layout/Footer";
 import FeaturedSlide from "../components/FeaturedSlide";
 import PageSEO from "../components/SEO/PageSEO";
 import img2 from "../assets/Images/img2.webp";
@@ -317,7 +316,6 @@ const Home = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

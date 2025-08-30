@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Globe, Trophy, Target, Heart, Zap, Shield } from "lucide-react";
-import Footer from "../components/layout/Footer";
+import { ArrowRight, Globe, Trophy, Target, Heart, Zap } from "lucide-react";
+// import Footer from "../components/layout/Footer";
 import FeaturedSlide from "../components/FeaturedSlide";
 import PageSEO from "../components/SEO/PageSEO";
 import er from "../assets/Images/er.webp";
@@ -12,7 +11,6 @@ import le0 from "../assets/Images/le0.webp";
 import pe from "../assets/Images/pe.webp";
 
 const About = () => {
-  const [activeValue, setActiveValue] = useState(0);
   const navigate = useNavigate();
 
   const heroSlides = [
@@ -49,32 +47,6 @@ const About = () => {
     },
   ];
 
-  const values = [
-    {
-      icon: Heart,
-      title: "Excellence",
-      description:
-        "We set the highest standards in everything we do, from event management to athlete representation, ensuring world-class delivery every time.",
-    },
-    {
-      icon: Shield,
-      title: "Integrity",
-      description:
-        "Built on trust and transparency, we approach each project with honesty and authenticity, creating lasting partnerships across Africa.",
-    },
-    {
-      icon: Zap,
-      title: "Innovation",
-      description:
-        "Pioneering new approaches to sports management, leveraging technology and creative thinking to transform the African sports landscape.",
-    },
-    {
-      icon: Globe,
-      title: "Unity",
-      description:
-        "Connecting all 54 African countries through sports, fostering collaboration and celebrating our shared passion for athletic excellence.",
-    },
-  ];
 
   const milestones = [
     {
@@ -116,12 +88,6 @@ const About = () => {
   //   { number: "1M", label: "Fans Engaged", suffix: "+" }
   // ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveValue((prev) => (prev + 1) % values.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -763,7 +729,7 @@ const About = () => {
           </motion.div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
