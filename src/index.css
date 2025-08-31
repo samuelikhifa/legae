@@ -93,8 +93,19 @@ a:not([class*="focus:"]):focus {
   outline-offset: 2px;
 }
 
-/* Remove the aggressive container reset that conflicts with Tailwind */
-/* Tailwind's container class should handle this */
+/* Enhanced shimmer animation for image loading */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
 
 /* Utility classes for common patterns */
 .gradient-primary {

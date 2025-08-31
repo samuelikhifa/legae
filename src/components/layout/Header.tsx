@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+// import FastImage from "../Performance/FastImage";
 import legacy from "../../assets/Images/legacy.png";
 
 interface HeaderProps {
@@ -59,7 +60,9 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
           <img
             src={legacy}
             alt="Legacy54 Logo"
-            className="w-24 h-20 sm:w-32 sm:h-24 md:w-28 md:h-24 lg:w-32 lg:h-28 transition-transform duration-200 hover:scale-105 object-contain"
+            className="w-30 h-28 sm:w-34 sm:h-26 md:w-28 md:h-24 lg:w-32 lg:h-28 transition-transform duration-200 hover:scale-105 object-contain"
+            // priority={true}
+            fetchPriority="high"
           />
 
           {/* Desktop Navigation */}
@@ -120,7 +123,7 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
               {isMenuOpen ? (
                 <X className="w-6 h-6" style={{ color: "#01215E" }} />
               ) : (
-                <Menu className="w-6 h-6" style={{ color: "#01215E" }} />
+                <Menu className="w-8 h-8"style={{ color: "#01215E" }} />
               )}
             </motion.div>
           </button>

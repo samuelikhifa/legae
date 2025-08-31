@@ -82,7 +82,7 @@ const FeaturedSlide = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="absolute inset-0"
         >
           {/* Background Image */}
@@ -101,9 +101,9 @@ const FeaturedSlide = ({
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center mt-16">
             <div className="text-left max-w-4xl">
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
               >
                 {currentSlideData.title}
@@ -114,9 +114,9 @@ const FeaturedSlide = ({
               </motion.h1>
 
               <motion.p
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
                 className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 max-w-3xl leading-relaxed"
               >
                 {currentSlideData.description}
@@ -124,13 +124,13 @@ const FeaturedSlide = ({
 
               {currentSlideData.ctaText && (
                 <motion.button
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
                   onClick={currentSlideData.ctaAction}
-                  className="px-6.5 py-4 bg-white text-[#01215E] rounded-full font-semibold text-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors duration-300 ml-4"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-4 bg-white text-[#01215E] rounded-full font-semibold text-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors duration-200 ml-4"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
                   <span>{currentSlideData.ctaText}</span>
                   <ArrowRight className="w-5 h-5" />

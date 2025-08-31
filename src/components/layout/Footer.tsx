@@ -1,3 +1,5 @@
+// Footer component
+// import FastImage from "../Performance/FastImage";
 import legacy from "../../assets/Images/legacy.png";
 
 const Footer = () => {
@@ -20,6 +22,7 @@ const Footer = () => {
                 src={legacy}
                 alt="Legacy54 Logo"
                 className="w-20 h-20 sm:w-24 sm:h-24 rounded-full shadow-lg ring-2 ring-white/20"
+                // priority={false}
               />
               {/* <img 
                 src={legacy}

@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Globe, Trophy, Target, Heart, Zap } from "lucide-react";
-// import Footer from "../components/layout/Footer";
-import FeaturedSlide from "../components/FeaturedSlide";
+import { ArrowRight, Target, Globe, Heart, Zap, Trophy } from "lucide-react";
 import PageSEO from "../components/SEO/PageSEO";
+
+import pe from "../assets/Images/pe.webp";
+import le0 from "../assets/Images/le0.webp";
+import pe3 from "../assets/Images/pe3.webp";
 import er from "../assets/Images/er.webp";
 import we5 from "../assets/Images/we5.webp";
-import pe3 from "../assets/Images/pe3.webp";
-import le0 from "../assets/Images/le0.webp";
-import pe from "../assets/Images/pe.webp";
+import FeaturedSlide from "../components/FeaturedSlide";
 
 const About = () => {
   const navigate = useNavigate();
@@ -48,38 +48,38 @@ const About = () => {
   ];
 
 
-  const milestones = [
-    {
-      year: "2020",
-      title: "Foundation",
-      description:
-        "Legacy54 was born from a vision to transform African sports management and create lasting impact.",
-    },
-    {
-      year: "2021",
-      title: "First Major Event",
-      description:
-        "Successfully managed our first championship tournament in Lagos, attracting over 10,000 attendees.",
-    },
-    {
-      year: "2022",
-      title: "Pan-African Expansion",
-      description:
-        "Expanded operations to 8 African countries, establishing key partnerships and local offices.",
-    },
-    {
-      year: "2023",
-      title: "Global Recognition",
-      description:
-        "Received international awards for innovation in sports management and community development.",
-    },
-    {
-      year: "2024",
-      title: "Future Vision",
-      description:
-        "Launching comprehensive athlete development programs and expanding to all 54 African countries.",
-    },
-  ];
+  // const milestones = [
+  //   {
+  //     year: "2020",
+  //     title: "Foundation",
+  //     description:
+  //       "Legacy54 was born from a vision to transform African sports management and create lasting impact.",
+  //   },
+  //   {
+  //     year: "2021",
+  //     title: "First Major Event",
+  //     description:
+  //       "Successfully managed our first championship tournament in Lagos, attracting over 10,000 attendees.",
+  //   },
+  //   {
+  //     year: "2022",
+  //     title: "Pan-African Expansion",
+  //     description:
+  //       "Expanded operations to 8 African countries, establishing key partnerships and local offices.",
+  //   },
+  //   {
+  //     year: "2023",
+  //     title: "Global Recognition",
+  //     description:
+  //       "Received international awards for innovation in sports management and community development.",
+  //   },
+  //   {
+  //     year: "2024",
+  //     title: "Future Vision",
+  //     description:
+  //       "Launching comprehensive athlete development programs and expanding to all 54 African countries.",
+  //   },
+  // ];
 
   // const stats = [
   //   { number: "54", label: "African Countries", suffix: "" },
@@ -265,6 +265,7 @@ const About = () => {
                   src={pe}
                   alt="Description of image"
                   className="absolute inset-0 w-full h-full object-cover"
+                  // priority={true}
                 />
               </div>
             </motion.div>
@@ -372,7 +373,7 @@ const About = () => {
       </section>
 
       {/* Journey Timeline */}
-      <section className="py-16 sm:py-20 lg:py-32 bg-gray-50">
+      {/* <section className="py-16 sm:py-20 lg:py-32 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -393,7 +394,7 @@ const About = () => {
           </motion.div>
 
           <div className="relative">
-            {/* Timeline Line */}
+            
             <div
               className="absolute left-4 sm:left-8 lg:left-1/2 lg:-translate-x-0.5 top-0 bottom-0 w-0.5 sm:w-1"
               style={{
@@ -413,7 +414,7 @@ const About = () => {
                     index % 2 === 0 ? "" : "lg:text-right"
                   }`}
                 >
-                  {/* Timeline Dot */}
+                  
                   <div
                     className="absolute left-2 sm:left-6 lg:left-1/2 lg:-translate-x-1/2 w-4 h-4 sm:w-6 sm:h-6 rounded-full border-4 border-white shadow-lg z-10"
                     style={{
@@ -466,7 +467,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team Section */}
       {/* <section className="py-16 sm:py-20 lg:py-32 bg-white">
@@ -704,7 +705,7 @@ const About = () => {
             </h2>
             <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto ">
               We're building strategic partnerships with institutions,
-              federations, and sponsors committed to the future of African
+              federations and sponsors committed to the future of African
               sports.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 ">

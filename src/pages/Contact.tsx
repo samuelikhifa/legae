@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Instagram, Linkedin, Youtube } from "lucide-react";
-import Footer from "../components/layout/Footer";
+// import Footer from "../components/layout/Footer";
 import PageSEO from "../components/SEO/PageSEO";
 
 const Contact = () => {
@@ -312,7 +312,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

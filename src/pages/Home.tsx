@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // Add this import
 import { ArrowRight, Star, Users, Trophy, Globe } from "lucide-react";
-import FeaturedSlide from "../components/FeaturedSlide";
+// import FastSlide from "../components/FastSlide";
 import PageSEO from "../components/SEO/PageSEO";
+
 import img2 from "../assets/Images/img2.webp";
 import le4 from "../assets/Images/le4.webp";
 import le7 from "../assets/Images/le7.webp";
 import le from "../assets/Images/le.webp";
+import FeaturedSlide from "../components/FeaturedSlide";
 
 const Home = () => {
   const navigate = useNavigate(); // Add this hook
@@ -16,7 +18,7 @@ const Home = () => {
       id: "slide-1",
       title: "Elevating African Sports",
       description:
-        "We design, manage, and deliver sporting moments that matter — from grassroots to elite competitions across Africa",
+        "We design, manage and deliver sporting moments that matter — from grassroots to elite competitions across Africa",
       image: img2,
       ctaText: "Discover Our Vision",
       ctaAction: () => navigate("/about"), // Fix: actual navigation
@@ -72,16 +74,16 @@ const Home = () => {
     },
   ];
 
-  const partners = [
-    "University of Lagos",
-    "MTN Sports",
-    "CAF",
-    "Nigerian Football Federation",
-    "Dangote Group",
-    "Access Bank",
-    "Bet9ja",
-    "StarTimes",
-  ];
+  // const partners = [
+  //   "University of Lagos",
+  //   "MTN Sports",
+  //   "CAF",
+  //   "Nigerian Football Federation",
+  //   "Dangote Group",
+  //   "Access Bank",
+  //   "Bet9ja",
+  //   "StarTimes",
+  // ];
 
   return (
     <div className="w-full min-h-screen bg-white">
@@ -149,6 +151,8 @@ const Home = () => {
                   src={le}
                   alt="Legacy54 Logo"
                   className="absolute inset-0 w-full h-full object-cover"
+                  // priority={true}
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4">
@@ -229,7 +233,7 @@ const Home = () => {
       </section>
 
       {/* Partners Section */}
-      <section className="w-full py-12 sm:py-16 lg:py-24 bg-white">
+      {/* <section className="w-full py-12 sm:py-16 lg:py-24 bg-white">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -266,7 +270,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="w-full py-12 sm:py-16 lg:py-24 relative overflow-hidden">

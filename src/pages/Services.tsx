@@ -16,7 +16,7 @@ import {
   UserCheck,
   Handshake,
 } from "lucide-react";
-import Footer from "../components/layout/Footer";
+
 import FeaturedSlide from "../components/FeaturedSlide";
 import PageSEO from "../components/SEO/PageSEO";
 import leg2 from "../assets/Images/leg2.webp";
@@ -462,7 +462,7 @@ const Services = () => {
                 </div>
 
                 {/* Stats */}
-                <div>
+                {/* <div>
                   <h5
                     className="text-lg font-semibold mb-4"
                     style={{ color: services[activeService].color }}
@@ -484,10 +484,10 @@ const Services = () => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
                 {/* Case Study */}
-                <div
+                {/* <div
                   className="p-6 rounded-2xl"
                   style={{
                     background: `linear-gradient(135deg, ${services[activeService].color}10, #445C8A10)`,
@@ -511,7 +511,7 @@ const Services = () => {
                   >
                     {services[activeService].caseStudy.impact}
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </motion.div>
@@ -741,7 +741,7 @@ const Services = () => {
         </div>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

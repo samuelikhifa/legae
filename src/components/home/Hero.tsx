@@ -12,16 +12,21 @@ import {
   // Zap,
   // Heart,
 } from "lucide-react";
+import FastImage from "../Performance/FastImage";
+
 
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Main Background with Multiple Layers */}
       <div className="absolute inset-0 z-0">
-        <img
+        <FastImage
           src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
           alt="African athletes celebrating victory"
           className="w-full h-full object-cover"
+          priority={true}
+          fetchPriority="high"
+          preload={true}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-navy-900/95 via-primary-800/90 to-navy-800/95"></div>
       </div>

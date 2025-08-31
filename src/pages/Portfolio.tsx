@@ -3,18 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Star,
-  MapPin,
-  Users,
-  Trophy,
+  // MapPin,
+  // Users,
+  // Trophy,
   Target,
   Zap,
   Filter,
   X,
   TrendingUp,
   Award,
-  Eye,
+  // Eye,
 } from "lucide-react";
-import Footer from "../components/layout/Footer";
+// import Footer from "../components/layout/Footer";
 import PageSEO from "../components/SEO/PageSEO";
 import FeaturedSlide from "../components/FeaturedSlide";
 import ele from "../assets/Images/ele.webp";
@@ -27,7 +27,7 @@ interface CaseStudy {
   challenge: string;
   solution: string;
   results: Array<{
-    metric: string;
+    // metric: string;
     value: string;
     icon: React.ComponentType<any>;
   }>;
@@ -120,10 +120,10 @@ const Portfolio = () => {
         solution:
           "Legacy54 developed a comprehensive event strategy combining state-of-the-art facilities, innovative fan engagement, and strategic media partnerships to create an unforgettable experience.",
         results: [
-          { metric: "Athletes Participated", value: "500+", icon: Users },
-          { metric: "Countries Represented", value: "12", icon: MapPin },
-          { metric: "Total Attendance", value: "25,000", icon: Eye },
-          { metric: "Media Reach", value: "2.5M", icon: TrendingUp },
+          // { metric: "Athletes Participated", value: "500+", icon: Users },
+          // { metric: "Countries Represented", value: "12", icon: MapPin },
+          // { metric: "Total Attendance", value: "25,000", icon: Eye },
+          // { metric: "Media Reach", value: "2.5M", icon: TrendingUp },
         ],
         highlights: [
           "First-ever pan-African multi-sport tournament in Lagos",
@@ -154,10 +154,10 @@ const Portfolio = () => {
         solution:
           "Created an integrated campaign spanning digital, on-ground activations, and athlete partnerships, all anchored by compelling storytelling that celebrated African sports culture.",
         results: [
-          { metric: "Brand Awareness Lift", value: "45%", icon: TrendingUp },
-          { metric: "Social Engagement", value: "1.2M", icon: Star },
-          { metric: "Events Activated", value: "8", icon: Trophy },
-          { metric: "ROI Achieved", value: "312%", icon: Award },
+          // { metric: "Brand Awareness Lift", value: "45%", icon: TrendingUp },
+          // { metric: "Social Engagement", value: "1.2M", icon: Star },
+          // { metric: "Events Activated", value: "8", icon: Trophy },
+          // { metric: "ROI Achieved", value: "312%", icon: Award },
         ],
         highlights: [
           "Custom mobile app with 100k+ downloads",
@@ -188,10 +188,10 @@ const Portfolio = () => {
         solution:
           "Developed a cinematic storytelling approach combining intimate athlete interviews, behind-the-scenes footage, and stunning visuals of African landscapes and sporting venues.",
         results: [
-          { metric: "Episode Views", value: "3.2M", icon: Eye },
-          { metric: "Platform Distribution", value: "12", icon: TrendingUp },
-          { metric: "Awards Won", value: "5", icon: Award },
-          { metric: "Countries Aired", value: "25", icon: MapPin },
+          // { metric: "Episode Views", value: "3.2M", icon: Eye },
+          // { metric: "Platform Distribution", value: "12", icon: TrendingUp },
+          // { metric: "Awards Won", value: "5", icon: Award },
+          // { metric: "Countries Aired", value: "25", icon: MapPin },
         ],
         highlights: [
           "Featured athletes from 15 different sports",
@@ -222,10 +222,10 @@ const Portfolio = () => {
         solution:
           "Established regional training centers, developed standardized coaching curricula, and created a digital platform for talent tracking and development monitoring.",
         results: [
-          { metric: "Youth Participants", value: "2,500", icon: Users },
-          { metric: "Countries Covered", value: "15", icon: MapPin },
-          { metric: "Coaches Trained", value: "150", icon: Trophy },
-          { metric: "Scholarships Awarded", value: "75", icon: Award },
+          // { metric: "Youth Participants", value: "2,500", icon: Users },
+          // { metric: "Countries Covered", value: "15", icon: MapPin },
+          // { metric: "Coaches Trained", value: "150", icon: Trophy },
+          // { metric: "Scholarships Awarded", value: "75", icon: Award },
         ],
         highlights: [
           "Partnership with 20+ local academies",
@@ -256,10 +256,10 @@ const Portfolio = () => {
         solution:
           "Developed a hybrid competition format combining regional qualifiers with a central tournament, supported by innovative broadcasting and fan engagement strategies.",
         results: [
-          { metric: "Teams Participating", value: "20", icon: Trophy },
-          { metric: "Games Broadcast", value: "120", icon: Eye },
-          { metric: "Fan Attendance", value: "180K", icon: Users },
-          { metric: "Prize Pool", value: "$2M", icon: Award },
+          // { metric: "Teams Participating", value: "20", icon: Trophy },
+          // { metric: "Games Broadcast", value: "120", icon: Eye },
+          // { metric: "Fan Attendance", value: "180K", icon: Users },
+          // { metric: "Prize Pool", value: "$2M", icon: Award },
         ],
         highlights: [
           "First-ever continental professional basketball league",
@@ -290,10 +290,10 @@ const Portfolio = () => {
         solution:
           "Developed an integrated activation strategy combining grassroots sports support, digital fan experiences, and premium hospitality programs across key sporting events.",
         results: [
-          { metric: "Fan Reach", value: "2.1M", icon: Eye },
-          { metric: "Digital Engagements", value: "850K", icon: Star },
-          { metric: "New Accounts", value: "12,500", icon: TrendingUp },
-          { metric: "Brand Lift", value: "38%", icon: Award },
+          // { metric: "Fan Reach", value: "2.1M", icon: Eye },
+          // { metric: "Digital Engagements", value: "850K", icon: Star },
+          // { metric: "New Accounts", value: "12,500", icon: TrendingUp },
+          // { metric: "Brand Lift", value: "38%", icon: Award },
         ],
         highlights: [
           "Community sports facility upgrades in 10 cities",
@@ -311,26 +311,26 @@ const Portfolio = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      quote:
-        "Legacy54 delivered an exceptional tournament experience that exceeded all expectations",
-      client: "Nigerian Football Federation",
-      logo: "NFF",
-    },
-    {
-      quote:
-        "Their strategic approach to brand partnerships created authentic connections with our audience",
-      client: "MTN Sports",
-      logo: "MTN",
-    },
-    {
-      quote:
-        "The media production quality was world-class, telling our athletes' stories beautifully",
-      client: "CAF",
-      logo: "CAF",
-    },
-  ];
+  // const testimonials = [
+  //   {
+  //     quote:
+  //       "Legacy54 delivered an exceptional tournament experience that exceeded all expectations",
+  //     client: "Nigerian Football Federation",
+  //     logo: "NFF",
+  //   },
+  //   {
+  //     quote:
+  //       "Their strategic approach to brand partnerships created authentic connections with our audience",
+  //     client: "MTN Sports",
+  //     logo: "MTN",
+  //   },
+  //   {
+  //     quote:
+  //       "The media production quality was world-class, telling our athletes' stories beautifully",
+  //     client: "CAF",
+  //     logo: "CAF",
+  //   },
+  // ];
 
   const filteredProjects =
     selectedCategory === "All"
@@ -670,7 +670,7 @@ const Portfolio = () => {
       </AnimatePresence>
 
       {/* Testimonials Section */}
-      <section className="py-16 lg:py-24 bg-gray-50">
+      {/* <section className="py-16 lg:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -720,7 +720,7 @@ const Portfolio = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-16 lg:py-24 relative overflow-hidden">
@@ -769,7 +769,7 @@ const Portfolio = () => {
         </div>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
