@@ -151,8 +151,7 @@ const Home = () => {
                   src={le}
                   alt="Legacy54 Logo"
                   className="absolute inset-0 w-full h-full object-cover"
-                  // priority={true}
-                  fetchPriority="high"
+                 
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4">
