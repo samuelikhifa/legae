@@ -71,16 +71,16 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
               <button
                 key={item.id}
                 onClick={() => handleNavigation(item)}
-                className={`relative px-3 py-2 rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#01215E] focus:ring-offset-2 ${
+                className={`relative px-3 py-2 rounded-lg font-medium transition-all duration-300  ${
                   currentPage === item.id
-                    ? "text-[#01215E] bg-[#01215E]/5"
+                    ? "text-[#01215E] "
                     : "text-gray-700 hover:text-[#01215E] hover:bg-gray-50"
                 }`}
               >
                 {item.name}
                 {currentPage === item.id && (
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#01215E]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5"
                     layoutId="activeTab"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -111,7 +111,7 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#01215E] focus:ring-offset-2"
+            className="md:hidden p-2 rounded-lg "
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -145,9 +145,9 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
             <button
               key={item.id}
               onClick={() => handleNavigation(item)}
-              className={`w-full text-left py-3 px-4 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#01215E] focus:ring-offset-2 ${
+              className={`w-full text-left py-3 px-4  font-medium transition-all duration-200 ${
                 currentPage === item.id
-                  ? "text-[#01215E] bg-[#01215E]/5 border-l-4 border-[#01215E]"
+                  ? "text-[#01215E]   border-[#01215E]"
                   : "text-gray-700 hover:text-[#01215E] hover:bg-gray-50"
               }`}
             >
@@ -227,9 +227,7 @@ const AppWithHeader = () => {
             <h1 className="text-4xl font-bold text-center text-[#01215E]">
               About Us
             </h1>
-            <p className="text-center mt-4 text-gray-600">
-              This is the about page content
-            </p>
+           
           </div>
         );
       case "services":

@@ -19,7 +19,7 @@ const About = () => {
       title: "Our Story",
       // subtitle: "Rooted in Excellence",
       description:
-        "Rooted in excellence, driven by legacy, and powered by innovation, we create unforgettable sporting moments that matter.",
+        "Rooted in excellence, driven by legacy and powered by innovation, we create unforgettable sporting moments that matter.",
       image: we5,
       ctaText: "Explore Our Expertise",
       ctaAction: () => navigate("/services"),
@@ -30,7 +30,7 @@ const About = () => {
       title: "Legacy54",
       // subtitle: "Where Sports Meets Excellence",
       description:
-        "We are architects of dreams, builders of legacies, and champions of excellence across Africa's 54 countries.",
+        "We are architects of dreams, builders of legacies and champions of excellence across Africa's 54 countries.",
       image: er,
       ctaText: "Join Our Programs",
       ctaAction: () => navigate("/services"),
@@ -147,8 +147,7 @@ const About = () => {
 
                 <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8">
                   The name "Legacy" speaks to our commitment to building
-                  something that lasts – a ripple that continues long after the
-                  final whistle. The number 54 is no accident either. It is a
+                  something that lasts. The number 54 is no accident either. It is a
                   nod to the 54 countries of Africa, a symbol of our pan-African
                   ambition and reach.
                 </p>
@@ -234,8 +233,7 @@ const About = () => {
               <div className="space-y-4 sm:space-y-6 text-lg sm:text-xl text-gray-700 leading-relaxed">
                 <p>
                   Our deep understanding of African sports culture and youth
-                  trends sets us apart. We don't just observe from the sidelines
-                  – we immerse ourselves in the communities we serve,
+                  trends sets us apart. We immerse ourselves in the communities we serve,
                   understanding the unique challenges and opportunities in each
                   market.
                 </p>

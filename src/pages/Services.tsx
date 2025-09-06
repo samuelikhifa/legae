@@ -7,13 +7,13 @@ import {
   Play,
   Trophy,
   Users,
-  Star,
+  // Star,
   Globe,
   Target,
   CheckCircle,
   Film,
   BarChart3,
-  UserCheck,
+  // UserCheck,
   Handshake,
 } from "lucide-react";
 
@@ -25,7 +25,7 @@ import sa from "../assets/Images/sa.webp";
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(0);
+  // const [selectedTestimonial, setSelectedTestimonial] = useState(0);
   const heroRef = useRef(null);
   // const isHeroInView = useInView(heroRef);
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ const Services = () => {
         "Broadcast & Media Production",
         "Sponsorship Integration",
         "Fan Experience Design",
-        "Technology Integration",
+        
         "Safety & Security Management",
       ],
       process: [
@@ -114,10 +114,9 @@ const Services = () => {
       features: [
         "Talent Identification Programs",
         "Youth Development Academies",
-        "Coaching Education & Certification",
-        "Sports Science Integration",
+        
         "Scholarship & Funding Programs",
-        "Community Outreach Initiatives",
+        
         "Performance Analytics",
         "Pathway to Professional Sports",
       ],
@@ -253,11 +252,7 @@ const Services = () => {
       title: "Sports Analytics",
       desc: "Data-driven insights for performance optimization and strategy",
     },
-    {
-      icon: UserCheck,
-      title: "Talent Scouting",
-      desc: "Continental network for identifying emerging sports talent",
-    },
+   
     {
       icon: Handshake,
       title: "Partnership Development",
@@ -265,32 +260,32 @@ const Services = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "David Okafor",
-      title: "Professional Footballer",
-      image: "/api/placeholder/100/100",
-      quote:
-        "Legacy54 transformed my career. Their representation opened doors I never knew existed and helped me secure my dream contract in Europe.",
-      rating: 5,
-    },
-    {
-      name: "Sarah Mensah",
-      title: "MTN Sports Director",
-      image: "/api/placeholder/100/100",
-      quote:
-        "Working with Legacy54 on our Pan-African campaign delivered exceptional results. Their understanding of African sports culture is unmatched.",
-      rating: 5,
-    },
-    {
-      name: "Coach Emmanuel",
-      title: "Basketball Academy",
-      image: "/api/placeholder/100/100",
-      quote:
-        "The youth development program transformed our academy. We've seen a 300% increase in scholarship placements for our athletes.",
-      rating: 5,
-    },
-  ];
+  // const testimonials = [
+  //   {
+  //     name: "David Okafor",
+  //     title: "Professional Footballer",
+  //     image: "/api/placeholder/100/100",
+  //     quote:
+  //       "Legacy54 transformed my career. Their representation opened doors I never knew existed and helped me secure my dream contract in Europe.",
+  //     rating: 5,
+  //   },
+  //   {
+  //     name: "Sarah Mensah",
+  //     title: "MTN Sports Director",
+  //     image: "/api/placeholder/100/100",
+  //     quote:
+  //       "Working with Legacy54 on our Pan-African campaign delivered exceptional results. Their understanding of African sports culture is unmatched.",
+  //     rating: 5,
+  //   },
+  //   {
+  //     name: "Coach Emmanuel",
+  //     title: "Basketball Academy",
+  //     image: "/api/placeholder/100/100",
+  //     quote:
+  //       "The youth development program transformed our academy. We've seen a 300% increase in scholarship placements for our athletes.",
+  //     rating: 5,
+  //   },
+  // ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -323,7 +318,7 @@ const Services = () => {
       </section>
 
       {/* Core Services Deep Dive */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-16 pb-4 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -519,14 +514,14 @@ const Services = () => {
       </section>
 
       {/* Additional Services */}
-      <section className="py-16 bg-gray-50">
+      <section className="bg-gray-50 pb-24"> 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <h2
               className="text-3xl sm:text-4xl font-bold mb-4"
@@ -539,37 +534,39 @@ const Services = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {additionalServices.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-white p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-[#01215E] to-[#445C8A] rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <service.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3
-                  className="text-lg font-semibold mb-2"
-                  style={{ color: "#01215E" }}
+          <div className="flex justify-center">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl"
+            >
+              {additionalServices.map((service, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="bg-white p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300"
                 >
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{service.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#01215E] to-[#445C8A] rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <service.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3
+                    className="text-lg font-semibold mb-2 flex items-center justify-center"
+                    style={{ color: "#01215E" }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{service.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Client Testimonials */}
-      <section className="py-16 lg:py-24 bg-white">
+      {/* <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -631,7 +628,7 @@ const Services = () => {
               </div>
             </motion.div>
 
-            {/* Testimonial Navigation */}
+          
             <div className="flex justify-center space-x-2 mt-8">
               {testimonials.map((_, index) => (
                 <button
@@ -647,7 +644,7 @@ const Services = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
       <section className="py-16 lg:py-24 relative overflow-hidden">

@@ -21,7 +21,7 @@ const Footer = () => {
               <img
                 src={legacy}
                 alt="Legacy54 Logo"
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full shadow-lg ring-2 ring-white/20"
+                className="w-25 h-25 sm:w-24 sm:h-24 rounded-full shadow-lg ring-2 ring-white/40 bg-white p-2 object-contain"
                 // priority={false}
               />
               {/* <img 
@@ -31,14 +31,30 @@ const Footer = () => {
               /> */}
             </div>
             <p className="text-white/80 leading-relaxed mb-6 max-w-md">
-              Elevating African sports through excellence, innovation, and
+              Elevating African sports through excellence, innovation and
               unwavering commitment to developing talent across all 54 countries
               of Africa.
             </p>
-            <div className="text-white/60">
+            <div className="text-white/60 space-y-1">
               <p>Nigeria | Africa | Global</p>
-              <p>info@legacy54sports.com</p>
-              <p>www.legacy54sports.com</p>
+              <p>
+                <a 
+                  href="mailto:legacy54sports@gmail.com"
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
+                >
+                  legacy54sports@gmail.com
+                </a>
+              </p>
+              <p>
+                <a 
+                  href="https://www.legacy54.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-200 cursor-pointer"
+                >
+                  www.legacy54.com
+                </a>
+              </p>
             </div>
           </div>
 
