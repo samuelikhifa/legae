@@ -15,7 +15,7 @@ const Contact = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const GOOGLE_FORMS_ACTION_URL = "https://docs.google.com/forms/d/e/1usHTboj-2lUKyKUA97ig4JW3LKkCtPMw7TPiBGgZkr4/formResponse";
+  const GOOGLE_FORMS_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd-q_Oo617uLZ0JE9PvbvAUyxbRt8ZFweZvkO2-0ExF0gbHhQ/formResponse";
 
   const services = [
     "Sports Event Management",
