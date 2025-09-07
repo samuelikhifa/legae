@@ -14,9 +14,7 @@ const Contact = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState("");
 
-  // Replace this URL with your Google Forms action URL
   const GOOGLE_FORMS_ACTION_URL = "https://docs.google.com/forms/d/e/1usHTboj-2lUKyKUA97ig4JW3LKkCtPMw7TPiBGgZkr4/formResponse";
 
   const services = [
@@ -55,13 +53,12 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus("");
 
     try {
       // Create FormData object for Google Forms submission
       const formDataToSend = new FormData();
       
-      // Replace these entry IDs with your actual Google Form field entry IDs
+      // Your actual Google Form field entry IDs
       formDataToSend.append('entry.1864864555', formData.name);
       formDataToSend.append('entry.832253140', formData.email);
       formDataToSend.append('entry.762550941', formData.company);
@@ -75,7 +72,6 @@ const Contact = () => {
         mode: 'no-cors'
       });
 
-      setSubmitStatus("success");
       setFormData({
         name: "",
         email: "",
@@ -89,7 +85,6 @@ const Contact = () => {
       
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitStatus("error");
       alert("Sorry, there was an error sending your message. Please try again.");
     } finally {
       setIsSubmitting(false);
