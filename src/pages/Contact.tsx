@@ -55,22 +55,42 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create FormData object for Google Forms submission
-      const formDataToSend = new FormData();
-      
-      // Your actual Google Form field entry IDs
-      formDataToSend.append('entry.1864864555', formData.name);
-      formDataToSend.append('entry.832253140', formData.email);
-      formDataToSend.append('entry.762550941', formData.company);
-      formDataToSend.append('entry.503547683', formData.service);
-      formDataToSend.append('entry.807302809', formData.message);
+      // Create a hidden iframe to submit the form
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
 
-      // Submit to Google Forms
-      await fetch(GOOGLE_FORMS_ACTION_URL, {
-        method: 'POST',
-        body: formDataToSend,
-        mode: 'no-cors'
+      // Create a form element
+      const form = document.createElement('form');
+      form.action = GOOGLE_FORMS_ACTION_URL;
+      form.method = 'POST';
+      form.target = iframe.name;
+
+      // Add form fields
+      const fields = [
+        { name: 'entry.1864864555', value: formData.name },
+        { name: 'entry.832253140', value: formData.email },
+        { name: 'entry.762550941', value: formData.company },
+        { name: 'entry.503547683', value: formData.service },
+        { name: 'entry.807302809', value: formData.message }
+      ];
+
+      fields.forEach(field => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = field.name;
+        input.value = field.value;
+        form.appendChild(input);
       });
+
+      // Submit the form
+      iframe.contentDocument?.body.appendChild(form);
+      form.submit();
+
+      // Clean up
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+      }, 1000);
 
       setFormData({
         name: "",
