@@ -47,28 +47,28 @@ const Home = () => {
     {
       title: "Sports Event Management",
       description:
-        "From ideation to execution, we design and manage high-impact sporting events with precision and flair",
+        "From ideation to execution, we design and manage high-impact sporting events with precision and flair.",
       icon: Trophy,
       gradient: "from-[#01215E] to-[#445C8A]",
     },
     {
       title: "Sports Programs & Projects",
       description:
-        "Providing platforms and tournaments for African sports talents to showcase their abilities",
+        "Providing platforms and tournaments for African sports talents to showcase their abilities.",
       icon: Star,
       gradient: "from-[#445C8A] to-[#3A5584]",
     },
     {
       title: "Athlete Representation",
       description:
-        "Helping athletes tell their stories, protect their interests and reach their highest potential",
+        "Helping athletes tell their stories, protect their interests and reach their highest potential.",
       icon: Users,
       gradient: "from-[#3A5584] to-[#3C5786]",
     },
     {
       title: "Brand Strategy & Sponsorships",
       description:
-        "Connecting brands and sports properties to create partnerships that add real value",
+        "Connecting brands and sports properties to create partnerships that add real value.",
       icon: Globe,
       gradient: "from-[#3C5786] to-[#001F58]",
     },
@@ -293,7 +293,7 @@ const Home = () => {
             </h2>
             <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed text-left">
               Join us in shaping the future of African sports. Whether athlete,
-              brand, or organization—we’ll create something extraordinary
+              brand or organization, we’ll create something extraordinary
               together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -36,7 +36,7 @@ const Footer = () => {
               of Africa.
             </p>
             <div className="text-white/60 space-y-1">
-              <p>Nigeria | Africa | Global</p>
+              <p>Sports | Africa | Excellence</p>
               <p>
                 <a 
                   href="mailto:legacy54sports@gmail.com"
@@ -145,8 +145,7 @@ const Footer = () => {
 
         <div className="border-t border-white/20 mt-12 pt-8 text-center text-white/60">
           <p>
-            &copy; 2025 Legacy54. All rights reserved. Building the future of
-            African sports.
+            &copy; 2025 Legacy54. All rights reserved. Elevating African Sport with global standards of excellence.
           </p>
         </div>
       </div>

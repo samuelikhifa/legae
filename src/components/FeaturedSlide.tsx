@@ -24,35 +24,60 @@ const FeaturedSlide = ({
   slides,
   autoPlay = true,
   autoPlayInterval = 5000,
-  showControls = true,
+  // showControls = true,
   showIndicators = true,
   className = "",
 }: FeaturedSlideProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload all images before rendering
+  useEffect(() => {
+    if (!slides || slides.length === 0) {
+      setImagesLoaded(true);
+      return;
+    }
+
+    const preloadImages = async () => {
+      const imagePromises = slides.map((slide) => {
+        return new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve(); // Still resolve on error to prevent hanging
+          img.src = slide.image;
+        });
+      });
+
+      await Promise.all(imagePromises);
+      setImagesLoaded(true);
+    };
+
+    preloadImages();
+  }, [slides]);
 
   // Auto-advance functionality
   useEffect(() => {
-    if (!isPlaying || slides.length <= 1) return;
+    if (!isPlaying || slides.length <= 1 || !imagesLoaded) return;
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [isPlaying, slides.length, autoPlayInterval]);
+  }, [isPlaying, slides.length, autoPlayInterval, imagesLoaded]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
-  const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  // const goToPrevious = () => {
+  //   setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  // };
 
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+  // const goToNext = () => {
+  //   setCurrentSlide((prev) => (prev + 1) % slides.length);
+  // };
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -69,14 +94,28 @@ const FeaturedSlide = ({
     );
   }
 
+  // Don't render the slideshow until all images are loaded
+  if (!imagesLoaded) {
+    return (
+      <div className="h-screen bg-gradient-to-br from-[#01215E] to-[#445C8A] flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+          <p className="text-xl opacity-80">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   const currentSlideData = slides[currentSlide];
 
   return (
     <section className={`relative h-screen overflow-hidden ${className}`}>
-      {/* Preload all images immediately */}
-      {slides.map((slide) => (
-        <link key={slide.id} rel="preload" as="image" href={slide.image} />
-      ))}
+      {/* Hidden preload images for browser caching */}
+      <div style={{ display: 'none' }}>
+        {slides.map((slide) => (
+          <img key={`preload-${slide.id}`} src={slide.image} alt="" />
+        ))}
+      </div>
       
       <AnimatePresence mode="wait">
         <motion.div
@@ -87,7 +126,7 @@ const FeaturedSlide = ({
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          {/* Background Image - Load immediately */}
+          {/* Background Image - Instant load since preloaded */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat object-top"
             style={{
@@ -97,7 +136,7 @@ const FeaturedSlide = ({
           />
 
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/40" />
+          {/* <div className="absolute inset-0 bg-black/40" /> */}
 
           {/* Content */}
           <div className="relative z-20 max-w-7xl mx-auto px-4 mt-4 sm:px-6 lg:px-8 h-full flex items-center">
@@ -140,7 +179,7 @@ const FeaturedSlide = ({
       </AnimatePresence>
 
       {/* Navigation Controls */}
-      {showControls && slides.length > 1 && (
+      {/* {showControls && slides.length > 1 && (
         <>
           <button
             onClick={goToPrevious}
@@ -158,7 +197,7 @@ const FeaturedSlide = ({
             →
           </button>
         </>
-      )}
+      )} */}
 
       {/* Slide Indicators */}
       {showIndicators && slides.length > 1 && (

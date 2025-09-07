@@ -35,7 +35,7 @@ const Services = () => {
       id: "services-slide-1",
       title: "Our Services",
       description:
-        "Comprehensive sports management elevating African sports — from athlete development to brand partnerships",
+        "Comprehensive sports management elevating African sports from athlete development to brand partnerships",
       image: sa,
       ctaText: "Learn More",
       ctaAction: () => navigate("/about"),

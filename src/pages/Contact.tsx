@@ -12,6 +12,12 @@ const Contact = () => {
     service: "",
     message: "",
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("");
+
+  // Replace this URL with your Google Forms action URL
+  const GOOGLE_FORMS_ACTION_URL = "https://docs.google.com/forms/d/e/1usHTboj-2lUKyKUA97ig4JW3LKkCtPMw7TPiBGgZkr4/formResponse";
 
   const services = [
     "Sports Event Management",
@@ -22,8 +28,6 @@ const Contact = () => {
   ];
 
   const socialPlatforms = [
-    // { icon: Facebook, name: "Facebook", gradient: "from-[#01215E] to-[#445C8A]" },
-    // { icon: Twitter, name: "Twitter", gradient: "from-[#445C8A] to-[#3A5584]" },
     {
       icon: Instagram,
       name: "Instagram",
@@ -48,9 +52,48 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus("");
+
+    try {
+      // Create FormData object for Google Forms submission
+      const formDataToSend = new FormData();
+      
+      // Replace these entry IDs with your actual Google Form field entry IDs
+      formDataToSend.append('entry.1864864555', formData.name);
+      formDataToSend.append('entry.832253140', formData.email);
+      formDataToSend.append('entry.762550941', formData.company);
+      formDataToSend.append('entry.503547683', formData.service);
+      formDataToSend.append('entry.807302809', formData.message);
+
+      // Submit to Google Forms
+      await fetch(GOOGLE_FORMS_ACTION_URL, {
+        method: 'POST',
+        body: formDataToSend,
+        mode: 'no-cors'
+      });
+
+      setSubmitStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        message: "",
+      });
+      
+      // Show success message
+      alert("Thank you! Your message has been sent successfully. We'll get back to you soon.");
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus("error");
+      alert("Sorry, there was an error sending your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -113,9 +156,6 @@ const Contact = () => {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
           >
             Get In Touch
-            {/* <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mt-4 text-white/90">
-              Let's Create Together
-            </span> */}
           </motion.h1>
 
           <motion.p
@@ -251,15 +291,16 @@ const Contact = () => {
 
               <motion.button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-4 text-white rounded-full font-semibold text-lg flex items-center justify-center space-x-2"
+                disabled={isSubmitting}
+                className="w-full sm:w-auto px-8 py-4 text-white rounded-full font-semibold text-lg flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   background: `linear-gradient(135deg, #01215E, #445C8A)`,
                 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
               >
                 <Send className="w-4 h-4" />
-                <span>Send Message</span>
+                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               </motion.button>
             </form>
           </motion.div>

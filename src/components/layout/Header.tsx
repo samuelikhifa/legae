@@ -73,7 +73,7 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
                 onClick={() => handleNavigation(item)}
                 className={`relative px-3 py-2 rounded-lg font-medium transition-all duration-300  ${
                   currentPage === item.id
-                    ? "text-[#01215E] "
+                    ? " "
                     : "text-gray-700 hover:text-[#01215E] hover:bg-gray-50"
                 }`}
               >
@@ -147,7 +147,7 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
               onClick={() => handleNavigation(item)}
               className={`w-full text-left py-3 px-4  font-medium transition-all duration-200 ${
                 currentPage === item.id
-                  ? "text-[#01215E]   border-[#01215E]"
+                  ? "   border-[#01215E]"
                   : "text-gray-700 hover:text-[#01215E] hover:bg-gray-50"
               }`}
             >

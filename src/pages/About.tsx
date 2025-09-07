@@ -142,7 +142,7 @@ const About = () => {
                   forged with a single vision: to elevate the experience of
                   sports in Africa and beyond. We are not just another sports
                   management company – we are architects of dreams, builders of
-                  legacies, and champions of excellence.
+                  legacies and champions of excellence.
                 </p>
 
                 <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8">

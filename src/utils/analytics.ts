@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your actual GA4 Measurement ID
+export const GA_MEASUREMENT_ID = 'G-XMRR0DS78C'; // Replace with your actual GA4 Measurement ID
 
 // Initialize Google Analytics
 export const initGA = () => {
@@ -26,12 +26,8 @@ export const initGA = () => {
   window.gtag('config', GA_MEASUREMENT_ID, {
     page_title: document.title,
     page_location: window.location.href,
-    send_page_view: true,
-    // Enhanced ecommerce and user engagement
-    custom_map: {
-      custom_parameter_1: 'user_engagement_score',
-      custom_parameter_2: 'content_category'
-    }
+    // Removed send_page_view as it's deprecated in GA4
+    // Removed custom_map as custom parameters should be set per event
   });
 };
 
@@ -41,7 +37,6 @@ export const trackPageView = (url: string, title: string) => {
     window.gtag('config', GA_MEASUREMENT_ID, {
       page_title: title,
       page_location: url,
-      send_page_view: true
     });
   }
 };
@@ -152,32 +147,36 @@ export const trackUserJourney = {
 export const trackEcommerce = {
   // Track service consultation bookings
   beginCheckout: (serviceType: string, value: number) => {
-    window.gtag('event', 'begin_checkout', {
-      currency: 'USD',
-      value: value,
-      items: [{
-        item_id: serviceType,
-        item_name: `${serviceType} Consultation`,
-        category: 'sports_services',
-        quantity: 1,
-        price: value
-      }]
-    });
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('event', 'begin_checkout', {
+        currency: 'USD',
+        value: value,
+        items: [{
+          item_id: serviceType,
+          item_name: `${serviceType} Consultation`,
+          category: 'sports_services',
+          quantity: 1,
+          price: value
+        }]
+      });
+    }
   },
 
   // Track completed service bookings
   purchase: (serviceType: string, value: number, transactionId: string) => {
-    window.gtag('event', 'purchase', {
-      transaction_id: transactionId,
-      currency: 'USD',
-      value: value,
-      items: [{
-        item_id: serviceType,
-        item_name: `${serviceType} Service`,
-        category: 'sports_services',
-        quantity: 1,
-        price: value
-      }]
-    });
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('event', 'purchase', {
+        transaction_id: transactionId,
+        currency: 'USD',
+        value: value,
+        items: [{
+          item_id: serviceType,
+          item_name: `${serviceType} Service`,
+          category: 'sports_services',
+          quantity: 1,
+          price: value
+        }]
+      });
+    }
   }
 };
