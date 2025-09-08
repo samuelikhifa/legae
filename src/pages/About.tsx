@@ -258,7 +258,7 @@ const About = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden">
+              <div className="relative h-80 sm:h-96 lg:h-120 rounded-2xl overflow-hidden">
                 <img
                   src={pe}
                   alt="Description of image"
@@ -301,7 +301,7 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-4 lg:pb-32 bg-white">
+      <section className="pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pt-3 lg:pb-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20">
             <motion.div

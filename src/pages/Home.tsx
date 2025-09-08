@@ -27,7 +27,7 @@ const Home = () => {
       id: "slide-2",
       title: "Championship Excellence",
       description:
-        "Legacy54 delivered an unforgettable tournament experience for over 10,000 fans across multiple African markets.",
+      "Celebrating the highest standards of competition, teamwork, and unforgettable sporting moments.",
       image: le7,
       ctaText: "View Our Work",
       ctaAction: () => navigate("/portfolio"), // Fix: actual navigation

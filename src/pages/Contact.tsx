@@ -15,7 +15,8 @@ const Contact = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const GOOGLE_FORMS_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd-q_Oo617uLZ0JE9PvbvAUyxbRt8ZFweZvkO2-0ExF0gbHhQ/formResponse";
+  // Replace with your email - FormSubmit will send submissions to this email
+  const FORMSUBMIT_URL = "https://formsubmit.co/legacy54sports@gmail.com";
 
   const services = [
     "Sports Event Management",
@@ -55,53 +56,38 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create a hidden iframe to submit the form
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-
-      // Create a form element
-      const form = document.createElement('form');
-      form.action = GOOGLE_FORMS_ACTION_URL;
-      form.method = 'POST';
-      form.target = iframe.name;
-
-      // Add form fields
-      const fields = [
-        { name: 'entry.1864864555', value: formData.name },
-        { name: 'entry.832253140', value: formData.email },
-        { name: 'entry.762550941', value: formData.company },
-        { name: 'entry.503547683', value: formData.service },
-        { name: 'entry.807302809', value: formData.message }
-      ];
-
-      fields.forEach(field => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = field.name;
-        input.value = field.value;
-        form.appendChild(input);
-      });
-
-      // Submit the form
-      iframe.contentDocument?.body.appendChild(form);
-      form.submit();
-
-      // Clean up
-      setTimeout(() => {
-        document.body.removeChild(iframe);
-      }, 1000);
-
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        service: "",
-        message: "",
-      });
+      const formDataToSend = new FormData();
       
-      // Show success message
-      alert("Thank you! Your message has been sent successfully. We'll get back to you soon.");
+      // FormSubmit fields
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('company', formData.company);
+      formDataToSend.append('service', formData.service);
+      formDataToSend.append('message', formData.message);
+      
+      // Optional FormSubmit configuration
+      formDataToSend.append('_subject', 'New Contact Form Submission');
+      formDataToSend.append('_captcha', 'false');
+      formDataToSend.append('_template', 'table');
+
+      const response = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      if (response.ok) {
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          message: "",
+        });
+        
+        alert("Thank you! Your message has been sent successfully. We'll get back to you soon.");
+      } else {
+        throw new Error('Form submission failed');
+      }
       
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -323,7 +309,7 @@ const Contact = () => {
       </section>
 
       {/* Social Media Section */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-8 lg:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -23,7 +23,7 @@ interface FeaturedSlideProps {
 const FeaturedSlide = ({
   slides,
   autoPlay = true,
-  autoPlayInterval = 5000,
+  autoPlayInterval = 6000,
   // showControls = true,
   showIndicators = true,
   className = "",
