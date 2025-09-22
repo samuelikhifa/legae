@@ -9,6 +9,9 @@ interface Slide {
   title: string;
   description: string;
   image: string;
+  // Optional responsive sources
+  srcSetWebp?: string;
+  srcSetAvif?: string;
   ctaText?: string;
   ctaAction?: () => void;
 }
@@ -85,7 +88,9 @@ const FeaturedSlide = ({
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className={`relative h-[80vh] sm:h-[90vh] lg:h-screen overflow-hidden ${className}`}>
+    <section
+      className={`relative h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-hidden ${className}`}
+    >
       {/* Preload the first slide image to improve LCP */}
       <Helmet>
         <link rel="preload" as="image" href={slides[0]?.image} />
@@ -106,11 +111,13 @@ const FeaturedSlide = ({
           <SmartImage
             src={currentSlideData.image}
             webp={currentSlideData.image}
+            srcSetWebp={currentSlideData.srcSetWebp}
+            srcSetAvif={currentSlideData.srcSetAvif}
             alt={currentSlideData.title}
             className="absolute inset-0 w-full h-full object-cover object-center"
             width={1920}
             height={1080}
-            sizes="100vw"
+            sizes="(min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
             priority={currentSlide === 0}
           />
 
@@ -118,13 +125,13 @@ const FeaturedSlide = ({
           {/* <div className="absolute inset-0 bg-black/40" /> */}
 
           {/* Content */}
-          <div className="relative z-20 max-w-7xl mx-auto px-4 mt-4 sm:px-6 lg:px-8 h-full flex items-center">
+          <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div className="text-left max-w-4xl">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
               >
                 {currentSlideData.title}
               </motion.h1>
@@ -133,7 +140,7 @@ const FeaturedSlide = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 max-w-3xl leading-relaxed"
+                className="text-base sm:text-lg lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-3xl leading-relaxed"
               >
                 {currentSlideData.description}
               </motion.p>
