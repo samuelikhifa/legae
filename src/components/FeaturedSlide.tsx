@@ -31,42 +31,26 @@ const FeaturedSlide = ({
 }: FeaturedSlideProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Preload all images before rendering
+  // Non-blocking warm preload for subsequent slides (no state tracking)
   useEffect(() => {
-    if (!slides || slides.length === 0) {
-      setImagesLoaded(true);
-      return;
-    }
-
-    const preloadImages = async () => {
-      const imagePromises = slides.map((slide) => {
-        return new Promise<void>((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve();
-          img.onerror = () => resolve(); // Still resolve on error to prevent hanging
-          img.src = slide.image;
-        });
-      });
-
-      await Promise.all(imagePromises);
-      setImagesLoaded(true);
-    };
-
-    preloadImages();
+    if (!slides || slides.length <= 1) return;
+    slides.slice(1).forEach((s) => {
+      const img = new Image();
+      img.src = s.image;
+    });
   }, [slides]);
 
-  // Auto-advance functionality
+  // Auto-advance functionality (don't block on image preload)
   useEffect(() => {
-    if (!isPlaying || slides.length <= 1 || !imagesLoaded) return;
+    if (!isPlaying || slides.length <= 1) return;
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [isPlaying, slides.length, autoPlayInterval, imagesLoaded]);
+  }, [isPlaying, slides.length, autoPlayInterval]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -95,28 +79,14 @@ const FeaturedSlide = ({
     );
   }
 
-  // Don't render the slideshow until all images are loaded
-  if (!imagesLoaded) {
-    return (
-      <div className="h-screen bg-gradient-to-br from-[#01215E] to-[#445C8A] flex items-center justify-center">
-        <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-xl opacity-80">Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  // Always render slideshow; SmartImage will handle loading states
 
   const currentSlideData = slides[currentSlide];
 
   return (
     <section className={`relative h-screen overflow-hidden ${className}`}>
       {/* Hidden preload images for browser caching */}
-      <div style={{ display: 'none' }}>
-        {slides.map((slide) => (
-          <img key={`preload-${slide.id}`} src={slide.image} alt="" />
-        ))}
-      </div>
+      {/* Background warm cache removed; handled via background preload in effect */}
       
       <AnimatePresence mode="wait">
         <motion.div
@@ -136,7 +106,7 @@ const FeaturedSlide = ({
             width={1920}
             height={1080}
             sizes="100vw"
-            priority={true}
+            priority={currentSlide === 0}
           />
 
           {/* Dark Overlay */}

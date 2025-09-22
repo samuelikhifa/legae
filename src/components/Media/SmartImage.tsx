@@ -33,9 +33,12 @@ export default function SmartImage({
         width={width}
         height={height}
         loading={priority ? "eager" : "lazy"}
+        // Hint the browser that this image is critical when priority is true
+        fetchPriority={priority ? ("high" as any) : ("auto" as any)}
         decoding="async"
         sizes={sizes}
         className={className}
+        style={{ backgroundColor: "#0f172a" }}
       />
     </picture>
   );
