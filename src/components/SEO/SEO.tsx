@@ -50,6 +50,7 @@ export default function SEO({
 
       {/* Extras */}
       <meta name="application-name" content="Legacy54" />
+      <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
     </Helmet>
   );

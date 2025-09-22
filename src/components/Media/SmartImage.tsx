@@ -3,6 +3,10 @@ export type SmartImageProps = {
   src: string; // fallback (e.g., jpg/png)
   webp?: string; // optional webp
   avif?: string; // optional avif
+  // Responsive srcset strings (e.g., from vite-imagetools `as=srcset`)
+  srcSetWebp?: string;
+  srcSetAvif?: string;
+  srcSet?: string; // generic/fallback srcset (e.g., jpg)
   alt: string;
   width?: number;
   height?: number;
@@ -22,13 +26,25 @@ export default function SmartImage({
   className = "",
   priority = false,
   sizes = "100vw",
+  srcSetWebp,
+  srcSetAvif,
+  srcSet,
 }: SmartImageProps) {
   return (
     <picture>
-      {avif ? <source srcSet={avif} type="image/avif" /> : null}
-      {webp ? <source srcSet={webp} type="image/webp" /> : null}
+      {srcSetAvif ? (
+        <source srcSet={srcSetAvif} type="image/avif" sizes={sizes} />
+      ) : avif ? (
+        <source srcSet={avif} type="image/avif" />
+      ) : null}
+      {srcSetWebp ? (
+        <source srcSet={srcSetWebp} type="image/webp" sizes={sizes} />
+      ) : webp ? (
+        <source srcSet={webp} type="image/webp" />
+      ) : null}
       <img
         src={webp || src}
+        srcSet={srcSet}
         alt={alt}
         width={width}
         height={height}

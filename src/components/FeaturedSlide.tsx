@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight, Play } from "lucide-react";
 import SmartImage from "./Media/SmartImage";
 
@@ -84,7 +85,11 @@ const FeaturedSlide = ({
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className={`relative h-screen overflow-hidden ${className}`}>
+    <section className={`relative h-[80vh] sm:h-[90vh] lg:h-screen overflow-hidden ${className}`}>
+      {/* Preload the first slide image to improve LCP */}
+      <Helmet>
+        <link rel="preload" as="image" href={slides[0]?.image} />
+      </Helmet>
       {/* Hidden preload images for browser caching */}
       {/* Background warm cache removed; handled via background preload in effect */}
       
@@ -102,7 +107,7 @@ const FeaturedSlide = ({
             src={currentSlideData.image}
             webp={currentSlideData.image}
             alt={currentSlideData.title}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             width={1920}
             height={1080}
             sizes="100vw"
