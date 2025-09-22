@@ -31,7 +31,7 @@ export default function SmartImage({
   srcSet,
 }: SmartImageProps) {
   return (
-    <picture>
+    <picture className={className}>
       {srcSetAvif ? (
         <source srcSet={srcSetAvif} type="image/avif" sizes={sizes} />
       ) : avif ? (
@@ -53,8 +53,8 @@ export default function SmartImage({
         fetchPriority={priority ? ("high" as any) : ("auto" as any)}
         decoding="async"
         sizes={sizes}
-        className={className}
-        style={{ backgroundColor: "#0f172a" }}
+        className="block w-full h-full object-cover object-center"
+        style={{ backgroundColor: "#0f172a", aspectRatio: width && height ? `${width}/${height}` : undefined }}
       />
     </picture>
   );

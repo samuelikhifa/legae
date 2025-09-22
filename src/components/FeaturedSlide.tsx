@@ -89,7 +89,7 @@ const FeaturedSlide = ({
 
   return (
     <section
-      className={`relative h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-hidden ${className}`}
+      className={`relative min-h-[100svh] lg:min-h-screen overflow-hidden ${className}`}
     >
       {/* Preload the first slide image to improve LCP */}
       <Helmet>
