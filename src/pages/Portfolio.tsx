@@ -1,7 +1,7 @@
 // import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import PageSEO from "../components/SEO/PageSEO";
+import SEO from "../components/SEO/SEO";
 import FeaturedSlide from "../components/FeaturedSlide";
 import ele from "../assets/Images/ele.webp";
 import ba from "../assets/Images/ba.webp";
@@ -43,7 +43,20 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <PageSEO page="portfolio" />
+      <SEO
+        title="Portfolio - Sports Events, Partnerships, and Impact Across Africa"
+        description="Explore Legacy54's portfolio of sports events, athlete campaigns, sponsorship activations, and media productions across Africa. Be our first showcase partner."
+        keywords={[
+          "Legacy54 portfolio",
+          "African sports events",
+          "sports partnerships",
+          "sponsorship activations",
+          "sports media production",
+          "athlete campaigns",
+        ]}
+        url="https://legacy54.com/portfolio"
+        image="https://legacy54.com/og-image.jpg"
+      />
 
       {/* Hero Section */}
       <FeaturedSlide

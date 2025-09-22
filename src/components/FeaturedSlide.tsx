@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
+import SmartImage from "./Media/SmartImage";
 
 interface Slide {
   id: string;
@@ -126,13 +127,16 @@ const FeaturedSlide = ({
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          {/* Background Image - Instant load since preloaded */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat object-top"
-            style={{
-              backgroundImage: `url(${currentSlideData.image})`,
-              backgroundPosition: "center center top top",
-            }}
+          {/* Background Image - Use SmartImage for better LCP & formats */}
+          <SmartImage
+            src={currentSlideData.image}
+            webp={currentSlideData.image}
+            alt={currentSlideData.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            width={1920}
+            height={1080}
+            sizes="100vw"
+            priority={true}
           />
 
           {/* Dark Overlay */}

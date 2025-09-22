@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 import FeaturedSlide from "../components/FeaturedSlide";
-import PageSEO from "../components/SEO/PageSEO";
+import SEO from "../components/SEO/SEO";
 import leg2 from "../assets/Images/leg2.webp";
 import leg1 from "../assets/Images/leg1.webp";
 import sa from "../assets/Images/sa.webp";
@@ -304,7 +304,21 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <PageSEO page="services" />
+      <SEO
+        title="Sports Management Services - Event Management, Sponsorships, Athlete Representation"
+        description="Comprehensive sports management services across Africa. Event management, athlete representation, sponsorship strategy, and fan engagement. Elevating African sports with Legacy54."
+        keywords={[
+          "sports event management",
+          "athlete representation",
+          "sports sponsorships",
+          "fan engagement",
+          "African sports culture",
+          "sports marketing",
+          "Legacy54 services",
+        ]}
+        url="https://legacy54.com/services"
+        image="https://legacy54.com/og-image.jpg"
+      />
 
       {/* Hero Section - Featured Slide */}
       <section ref={heroRef}>

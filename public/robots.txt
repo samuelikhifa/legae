@@ -1,0 +1,15 @@
+# robots.txt for https://legacy54.com
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow common non-indexable paths (uncomment if applicable)
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl-delay example (uncomment only if your server needs it)
+# Crawl-delay: 5
+
+Sitemap: https://legacy54.com/sitemap.xml
+Host: https://legacy54.com

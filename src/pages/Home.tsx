@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom"; // Add this import
 import { ArrowRight, Star, Users, Trophy, Globe } from "lucide-react";
 // import FastSlide from "../components/FastSlide";
-import PageSEO from "../components/SEO/PageSEO";
+import SEO from "../components/SEO/SEO";
+import SmartImage from "../components/Media/SmartImage";
 
 import img2 from "../assets/Images/img2.webp";
 import le4 from "../assets/Images/le4.webp";
@@ -87,7 +88,22 @@ const Home = () => {
 
   return (
     <div className="w-full min-h-screen bg-white">
-      <PageSEO page="home" />
+      <SEO
+        title="Elevating African Sports"
+        description="Legacy54 is a sports brand elevating African sports through world-class event management, athlete representation, sponsorship strategy, and fan engagement experiences."
+        keywords={[
+          "Legacy54",
+          "African sports",
+          "sports event management",
+          "athlete representation",
+          "sports sponsorships",
+          "fan engagement",
+          "sports marketing",
+          "African sports culture",
+        ]}
+        url="https://legacy54.com/"
+        image="https://legacy54.com/og-image.jpg"
+      />
 
       {/* Hero Section - Featured Slide */}
       <section className="w-full">
@@ -147,11 +163,14 @@ const Home = () => {
               className="w-full relative"
             >
               <div className="relative h-64 sm:h-80 lg:h-96 xl:h-[500px] rounded-2xl overflow-hidden">
-                <img
+                <SmartImage
                   src={le}
-                  alt="Legacy54 Logo"
+                  webp={le}
+                  alt="Legacy54 brand and African sports imagery"
                   className="absolute inset-0 w-full h-full object-cover"
-                 
+                  width={1600}
+                  height={900}
+                  sizes="(min-width: 1024px) 1024px, 100vw"
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4">

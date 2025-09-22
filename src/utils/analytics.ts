@@ -1,4 +1,4 @@
-// Google Analytics 4 Configuration
+
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;
@@ -8,7 +8,6 @@ declare global {
 
 export const GA_MEASUREMENT_ID = 'G-XMRR0DS78C'; // Replace with your actual GA4 Measurement ID
 
-// Initialize Google Analytics
 export const initGA = () => {
   // Load gtag script
   const script = document.createElement('script');
