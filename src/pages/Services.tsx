@@ -304,6 +304,7 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <h1 className="sr-only">Sports Event Management, Athlete Representation, Sponsorships, and Fan Engagement Services</h1>
       <SEO
         title="Sports Management Services - Event Management, Sponsorships, Athlete Representation"
         description="Comprehensive sports management services across Africa. Event management, athlete representation, sponsorship strategy, and fan engagement. Elevating African sports with Legacy54."

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Target, Globe, Heart, Zap, Trophy } from "lucide-react";
-import PageSEO from "../components/SEO/PageSEO";
+import SEO from "../components/SEO/SEO";
 
 import pe from "../assets/Images/pe.webp";
 import le0 from "../assets/Images/le0.webp";
@@ -91,7 +91,16 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <PageSEO page="about" />
+      <SEO
+        title="About Legacy54 | Sports Management in Africa"
+        description="Learn about Legacy54’s mission to elevate African sports through event management, athlete representation, sponsorships, and fan engagement across all 54 countries."
+        url="https://legacy54.com/about"
+        image="https://legacy54.com/og-image.jpg"
+        keywords={["Legacy54", "About Legacy54", "African sports", "sports management", "athlete representation", "sports sponsorships", "fan engagement"]}
+      />
+
+      {/* Page Heading for SEO accessibility */}
+      <h1 className="sr-only">About Legacy54</h1>
 
       {/* Hero Section - Featured Slide */}
       <FeaturedSlide

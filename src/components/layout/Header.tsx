@@ -32,18 +32,9 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle navigation
-  const handleNavigation = (item: {
-    id: string;
-    path: string;
-    name: string;
-  }) => {
-    if (onNavigate) {
-      onNavigate(item.id);
-    } else {
-      // Fallback to regular navigation if no custom handler
-      window.location.href = item.path;
-    }
+  // Handle navigation for internal state only (anchors used for actual nav)
+  const handleNavigation = (item: { id: string; path: string; name: string }) => {
+    onNavigate?.(item.id);
     setIsMenuOpen(false);
   };
 
@@ -57,19 +48,22 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 md:h-24">
-          <img
-            src={legacy}
-            alt="Legacy54 Logo"
-            className="w-30 h-28 sm:w-34 sm:h-26 md:w-28 md:h-24 lg:w-32 lg:h-28 transition-transform duration-200 hover:scale-105 object-contain"
-            // priority={true}
-            fetchPriority="high"
-          />
+          <a href="/" aria-label="Legacy54 Home">
+            <img
+              src={legacy}
+              alt="Legacy54 Logo"
+              className="w-30 h-28 sm:w-34 sm:h-26 md:w-28 md:h-24 lg:w-32 lg:h-28 transition-transform duration-200 hover:scale-105 object-contain"
+              // priority={true}
+              fetchPriority="high"
+            />
+          </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Primary">
             {navigationItems.map((item) => (
-              <button
+              <a
                 key={item.id}
+                href={item.path}
                 onClick={() => handleNavigation(item)}
                 className={`relative px-3 py-2 rounded-lg font-medium transition-all duration-300  ${
                   currentPage === item.id
@@ -86,27 +80,22 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                 )}
-              </button>
+              </a>
             ))}
 
             {/* CTA Button */}
-            <motion.button
+            <motion.a
+              href="/contact"
               className="px-6 py-2 text-white rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-[#01215E] focus:ring-offset-2"
               style={{
                 background: `linear-gradient(135deg, #01215E, #445C8A)`,
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() =>
-                handleNavigation({
-                  id: "contact",
-                  path: "/contact",
-                  name: "Contact",
-                })
-              }
+              onClick={() => handleNavigation({ id: "contact", path: "/contact", name: "Contact" })}
             >
               Partner With Us
-            </motion.button>
+            </motion.a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -142,33 +131,29 @@ const Header = ({ currentPage = "home", onNavigate }: HeaderProps) => {
       >
         <div className="px-4 py-4 space-y-2">
           {navigationItems.map((item) => (
-            <button
+            <a
               key={item.id}
+              href={item.path}
               onClick={() => handleNavigation(item)}
-              className={`w-full text-left py-3 px-4  font-medium transition-all duration-200 ${
+              className={`block w-full text-left py-3 px-4 font-medium transition-all duration-200 ${
                 currentPage === item.id
                   ? "   border-[#01215E]"
                   : "text-gray-700 hover:text-[#01215E] hover:bg-gray-50"
               }`}
             >
               {item.name}
-            </button>
+            </a>
           ))}
 
           {/* Mobile CTA Button */}
-          <button
-            onClick={() =>
-              handleNavigation({
-                id: "contact",
-                path: "/contact",
-                name: "Contact",
-              })
-            }
-            className="w-full mt-4 px-6 py-3 text-white rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-[#01215E] focus:ring-offset-2"
+          <a
+            href="/contact"
+            onClick={() => handleNavigation({ id: "contact", path: "/contact", name: "Contact" })}
+            className="block text-center w-full mt-4 px-6 py-3 text-white rounded-full font-medium focus:outline-none focus:ring-2 focus:ring-[#01215E] focus:ring-offset-2"
             style={{ background: `linear-gradient(135deg, #01215E, #445C8A)` }}
           >
             Partner With Us
-          </button>
+          </a>
         </div>
       </motion.div>
 

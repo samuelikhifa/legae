@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Instagram, Linkedin, Youtube } from "lucide-react";
 // import Footer from "../components/layout/Footer";
-import PageSEO from "../components/SEO/PageSEO";
+import SEO from "../components/SEO/SEO";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -99,7 +99,13 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <PageSEO page="contact" />
+      <SEO
+        title="Contact Legacy54 | Sports Management in Africa"
+        description="Get in touch with Legacy54 for sports event management, athlete representation, sponsorships, and fan engagement across Africa. Let's elevate your sports vision."
+        url="https://legacy54.com/contact"
+        image="https://legacy54.com/og-image.jpg"
+        keywords={["Contact Legacy54", "sports management Africa", "sports event management", "athlete representation", "sports sponsorships", "fan engagement"]}
+      />
 
       {/* Hero Section - Reduced height and left-aligned text */}
       <section className="relative h-[75vh] flex items-center justify-start overflow-hidden">

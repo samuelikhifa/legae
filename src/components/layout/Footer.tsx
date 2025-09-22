@@ -3,14 +3,6 @@
 import legacy from "../../assets/Images/legacy.png";
 
 const Footer = () => {
-  // Handle navigation - you can customize this based on your routing setup
-  const handleNavigation = (path: string) => {
-    // For React Router, you would use:
-    // navigate(path);
-
-    // For now, using window.location (replace with your routing solution)
-    window.location.href = path;
-  };
 
   return (
     <footer className="bg-[#001F58] text-white py-12 lg:py-16">
@@ -60,84 +52,47 @@ const Footer = () => {
 
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-white/80">
+            <ul className="space-y-2 text-white/80" aria-label="Services">
               <li>
-                <button
-                  onClick={() => handleNavigation("/services")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
+                <a href="/services" className="hover:text-white transition-colors duration-200">
                   Event Management
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/services")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
+                <a href="/services" className="hover:text-white transition-colors duration-200">
                   Athlete Representation
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/services")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
+                <a href="/services" className="hover:text-white transition-colors duration-200">
                   Brand Strategy
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/services")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
+                <a href="/services" className="hover:text-white transition-colors duration-200">
                   Media Production
-                </button>
+                </a>
               </li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-white/80">
+            <ul className="space-y-2 text-white/80" aria-label="Company">
               <li>
-                <button
-                  onClick={() => handleNavigation("/")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
-                  Home
-                </button>
+                <a href="/" className="hover:text-white transition-colors duration-200">Home</a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/about")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
-                  About Us
-                </button>
+                <a href="/about" className="hover:text-white transition-colors duration-200">About Us</a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/services")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
-                  Our Services
-                </button>
+                <a href="/services" className="hover:text-white transition-colors duration-200">Our Services</a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/portfolio")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
-                  Our Work
-                </button>
+                <a href="/portfolio" className="hover:text-white transition-colors duration-200">Our Work</a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavigation("/contact")}
-                  className="hover:text-white transition-colors duration-200 text-left w-full cursor-pointer"
-                >
-                  Contact
-                </button>
+                <a href="/contact" className="hover:text-white transition-colors duration-200">Contact</a>
               </li>
             </ul>
           </div>

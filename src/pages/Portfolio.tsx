@@ -43,6 +43,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <h1 className="sr-only">Our Sports Projects & Partnerships</h1>
       <SEO
         title="Portfolio - Sports Events, Partnerships, and Impact Across Africa"
         description="Explore Legacy54's portfolio of sports events, athlete campaigns, sponsorship activations, and media productions across Africa. Be our first showcase partner."
