@@ -36,7 +36,7 @@ const FeaturedSlide = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
 
-  // Non-blocking warm preload for subsequent slides (no state tracking)
+  // Non-blocking warm preload for subsequent 
   useEffect(() => {
     if (!slides || slides.length <= 1) return;
     slides.slice(1).forEach((s) => {
