@@ -75,7 +75,7 @@ const FeaturedSlide = ({
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center justify-center pt-18 sm:pt-36 lg:pt-48 pb-12">
+      <div className="relative z-20 h-full flex items-center justify-center pt-18 sm:pt-24 lg:pt-48 pb-12">
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-left max-w-4xl">
