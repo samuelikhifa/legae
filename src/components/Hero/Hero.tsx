@@ -1,37 +1,30 @@
-import React from "react";
+import type { ReactNode } from "react";
 
 export type HeroProps = {
-  // Fallback sources
-  src: string; // jpg/png/webp fallback (mid/high res)
+  
+  src: string; 
   alt: string;
 
-  // Responsive srcset strings (e.g., from vite-imagetools `as=srcset`)
+  
   srcSetAvif?: string;
   srcSetWebp?: string;
-  srcSetFallback?: string; // jpg/png srcset if needed
+  srcSetFallback?: string; 
 
-  // Sizing hints
-  sizes?: string; // e.g. "(min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
-  width?: number; // intrinsic width for aspect-ratio
-  height?: number; // intrinsic height for aspect-ratio
-
-  // Heading / content
+  
+  sizes?: string; 
+  width?: number; 
+  height?: number; 
+  
   title: string;
   subtitle?: string;
-  actions?: React.ReactNode; // CTA buttons
+  actions?: ReactNode; 
 
   // Layout
   className?: string;
   overlayClassName?: string;
 };
 
-/**
- * Drop-in Hero component optimized for mobile LCP
- * - Eager loads hero image (no lazy)
- * - <picture> with AVIF/WebP srcsets + fallback
- * - Uses modern viewport units to avoid white gaps on mobile
- * - Centers overlay text with responsive typography
- */
+ 
 export default function Hero({
   src,
   alt,
@@ -65,7 +58,6 @@ export default function Hero({
           alt={alt}
           loading="eager" // Do NOT lazy-load hero
           decoding="async"
-          fetchPriority="high"
           width={width}
           height={height}
           sizes={sizes}

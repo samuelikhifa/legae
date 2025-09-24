@@ -107,7 +107,6 @@ const About = () => {
         slides={heroSlides}
         autoPlay={true}
         autoPlayInterval={7000}
-        showControls={true}
         showIndicators={true}
       />
 
@@ -700,7 +699,7 @@ const About = () => {
         />
         <div className="absolute inset-0 bg-black/10 justify-left text-left" />
 
-        <div className="relative z-10 max-w-4xl mx-auto justify-left px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-4xl mx-auto justify-left text-left px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -710,7 +709,7 @@ const About = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8">
               Ready to Build the Legacy?
             </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto ">
+            <p className="text-xl text-white/90 mb-8 leading-relaxed ">
               We're building strategic partnerships with institutions,
               federations and sponsors committed to the future of African
               sports.

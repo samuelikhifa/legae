@@ -1,17 +1,11 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
-import { ArrowRight, Play } from "lucide-react";
-import SmartImage from "./Media/SmartImage";
+import { ArrowRight } from "lucide-react";
 
 interface Slide {
   id: string;
   title: string;
   description: string;
   image: string;
-  // Optional responsive sources
-  srcSetWebp?: string;
-  srcSetAvif?: string;
   ctaText?: string;
   ctaAction?: () => void;
 }
@@ -20,7 +14,6 @@ interface FeaturedSlideProps {
   slides: Slide[];
   autoPlay?: boolean;
   autoPlayInterval?: number;
-  showControls?: boolean;
   showIndicators?: boolean;
   className?: string;
 }
@@ -29,23 +22,13 @@ const FeaturedSlide = ({
   slides,
   autoPlay = true,
   autoPlayInterval = 6000,
-  // showControls = true,
   showIndicators = true,
   className = "",
 }: FeaturedSlideProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
 
-  // Non-blocking warm preload for subsequent 
-  useEffect(() => {
-    if (!slides || slides.length <= 1) return;
-    slides.slice(1).forEach((s) => {
-      const img = new Image();
-      img.src = s.image;
-    });
-  }, [slides]);
-
-  // Auto-advance functionality (don't block on image preload)
+  // Auto-advance functionality
   useEffect(() => {
     if (!isPlaying || slides.length <= 1) return;
 
@@ -59,14 +42,6 @@ const FeaturedSlide = ({
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
-
-  // const goToPrevious = () => {
-  //   setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  // };
-
-  // const goToNext = () => {
-  //   setCurrentSlide((prev) => (prev + 1) % slides.length);
-  // };
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -83,111 +58,52 @@ const FeaturedSlide = ({
     );
   }
 
-  // Always render slideshow; SmartImage will handle loading states
-
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section
-      className={`relative min-h-[100svh] lg:min-h-screen overflow-hidden ${className}`}
-    >
-      {/* Preload the first slide image to improve LCP */}
-      <Helmet>
-        <link rel="preload" as="image" href={slides[0]?.image} />
-      </Helmet>
-      {/* Hidden preload images for browser caching */}
-      {/* Background warm cache removed; handled via background preload in effect */}
-      
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="absolute inset-0"
-        >
-          {/* Background Image - Use SmartImage for better LCP & formats */}
-          <SmartImage
-            src={currentSlideData.image}
-            webp={currentSlideData.image}
-            srcSetWebp={currentSlideData.srcSetWebp}
-            srcSetAvif={currentSlideData.srcSetAvif}
-            alt={currentSlideData.title}
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            width={1920}
-            height={1080}
-            sizes="(min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
-            priority={currentSlide === 0}
-          />
+    <section className={`relative min-h-screen overflow-hidden ${className}`}>
+      {/* Background Image - Simple and Direct */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{ 
+          backgroundImage: `url(${currentSlideData.image})`,
+          backgroundColor: "#01215E"
+        }}
+      ></div>
 
-          {/* Dark Overlay */}
-          {/* <div className="absolute inset-0 bg-black/40" /> */}
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/40" />
 
-          {/* Content */}
-          <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-            <div className="text-left max-w-4xl">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
-              >
-                {currentSlideData.title}
-              </motion.h1>
+      {/* Content */}
+      <div className="relative z-20 h-full flex items-center justify-center pt-32 sm:pt-40 lg:pt-48 pb-12">
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                className="text-base sm:text-lg lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-3xl leading-relaxed"
-              >
-                {currentSlideData.description}
-              </motion.p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="text-left max-w-4xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+            {currentSlideData.title}
+          </h1>
 
-              {currentSlideData.ctaText && (
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  onClick={currentSlideData.ctaAction}
-                  className="px-6 py-4 bg-white text-[#01215E] rounded-full font-semibold text-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors duration-200"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  <span>{currentSlideData.ctaText}</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          <p className="text-base sm:text-lg lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-3xl leading-relaxed">
+            {currentSlideData.description}
+          </p>
 
-      {/* Navigation Controls */}
-      {/* {showControls && slides.length > 1 && (
-        <>
-          <button
-            onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 backdrop-blur-sm text-xl"
-            aria-label="Previous slide"
-          >
-            ←
-          </button>
-
-          <button
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 backdrop-blur-sm text-xl"
-            aria-label="Next slide"
-          >
-            →
-          </button>
-        </>
-      )} */}
+          {currentSlideData.ctaText && (
+            <button
+              onClick={currentSlideData.ctaAction}
+              className="px-6 py-4 bg-white text-[#01215E] rounded-full font-semibold text-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors duration-200"
+            >
+              <span>{currentSlideData.ctaText}</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+        
+      </div>
+      </div>
 
       {/* Slide Indicators */}
       {showIndicators && slides.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -207,7 +123,7 @@ const FeaturedSlide = ({
       {autoPlay && slides.length > 1 && (
         <button
           onClick={togglePlayPause}
-          className="absolute top-8 right-8 z-30 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300 backdrop-blur-sm"
+          className="absolute top-8 right-8 z-20 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-300"
           aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
         >
           {isPlaying ? (
@@ -216,7 +132,9 @@ const FeaturedSlide = ({
               <div className="w-1 h-4 bg-current"></div>
             </div>
           ) : (
-            <Play className="w-4 h-4" />
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
           )}
         </button>
       )}

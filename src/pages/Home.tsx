@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"; // Add this import
 import { ArrowRight, Star, Users, Trophy, Globe } from "lucide-react";
 // import FastSlide from "../components/FastSlide";
 import SEO from "../components/SEO/SEO";
-import SmartImage from "../components/Media/SmartImage";
 
+// import legacyPng from "../assets/Images/legacy.png";
 import img2 from "../assets/Images/img2.webp";
 import le4 from "../assets/Images/le4.webp";
 import le7 from "../assets/Images/le7.webp";
@@ -111,7 +111,6 @@ const Home = () => {
           slides={heroSlides}
           autoPlay={true}
           autoPlayInterval={6000}
-          showControls={true}
           showIndicators={true}
         />
       </section>
@@ -163,14 +162,13 @@ const Home = () => {
               className="w-full relative"
             >
               <div className="relative h-64 sm:h-80 lg:h-96 xl:h-[500px] rounded-2xl overflow-hidden">
-                <SmartImage
+                <img
                   src={le}
-                  webp={le}
                   alt="Legacy54 brand and African sports imagery"
                   className="absolute inset-0 w-full h-full object-cover"
-                  width={1600}
-                  height={900}
-                  sizes="(min-width: 1024px) 1024px, 100vw"
+                  loading="lazy"
+                  decoding="async"
+                  style={{ backgroundColor: "#0f172a" }}
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4">
@@ -300,22 +298,22 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-black/10" />
 
-        <div className="relative z-10 w-full max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full max-w-4xl mx-auto text-left px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Ready to Elevate Your Vision{" "}
             </h2>
-            <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed text-left">
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
               Join us in shaping the future of African sports. Whether athlete,
               brand or organization, we’ll create something extraordinary
               together.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-left">
               <motion.button
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#01215E] rounded-full font-semibold text-base sm:text-lg flex items-center justify-center space-x-2"
                 whileHover={{ scale: 1.05 }}

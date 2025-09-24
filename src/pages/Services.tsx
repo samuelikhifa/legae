@@ -327,7 +327,6 @@ const Services = () => {
           slides={heroSlides}
           autoPlay={true}
           autoPlayInterval={5000}
-          showControls={true}
           showIndicators={true}
         />
       </section>

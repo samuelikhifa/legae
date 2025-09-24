@@ -12,6 +12,7 @@ import {
   // Zap,
   // Heart,
 } from "lucide-react";
+import heroBg from "../../assets/Images/legacy.png";
 
 const Hero: React.FC = () => {
   return (
@@ -19,9 +20,13 @@ const Hero: React.FC = () => {
       {/* Main Background with Multiple Layers */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80"
+          src={heroBg}
           alt="African athletes celebrating victory"
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          style={{ backgroundColor: "#0f172a" }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-navy-900/95 via-primary-800/90 to-navy-800/95"></div>
       </div>
