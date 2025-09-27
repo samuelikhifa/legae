@@ -61,7 +61,9 @@ const FeaturedSlide = ({
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section className={`relative min-h-screen overflow-hidden ${className}`}>
+    <section
+      className={`relative min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] lg:min-h-screen overflow-hidden ${className}`}
+    >
       {/* Background Image - Simple and Direct */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center"
@@ -75,30 +77,30 @@ const FeaturedSlide = ({
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center justify-center pt-50 sm:pt-40 lg:pt-48 pb-12">
-
+      <div className="relative z-20 flex items-center justify-center min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] lg:min-h-screen pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-10 sm:pb-12 md:pb-14 lg:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="text-left max-w-4xl">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-            {currentSlideData.title}
-          </h1>
+          <div className="max-w-4xl mx-auto lg:mx-0 text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 md:mb-5 lg:mb-6 leading-tight">
+              {currentSlideData.title}
+            </h1>
 
-          <p className="text-base sm:text-lg lg:text-2xl text-white/90 mb-6 sm:mb-8 max-w-3xl leading-relaxed">
-            {currentSlideData.description}
-          </p>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-5 sm:mb-6 md:mb-7 lg:mb-8 leading-relaxed max-w-3xl mx-auto lg:mx-0">
+              {currentSlideData.description}
+            </p>
 
-          {currentSlideData.ctaText && (
-            <button
-              onClick={currentSlideData.ctaAction}
-              className="px-6 py-4 bg-white text-[#01215E] rounded-full font-semibold text-lg flex items-center space-x-2 hover:bg-gray-100 transition-colors duration-200"
-            >
-              <span>{currentSlideData.ctaText}</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          )}
+            {currentSlideData.ctaText && (
+              <div className="flex justify-start">
+                <button
+                  onClick={currentSlideData.ctaAction}
+                  className="px-5 sm:px-6 md:px-7 lg:px-8 py-3 sm:py-3.5 md:py-4 bg-white text-[#01215E] rounded-full font-semibold text-base sm:text-lg flex items-center gap-2 hover:bg-gray-100 transition-colors duration-200"
+                >
+                  <span>{currentSlideData.ctaText}</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
-        
-      </div>
       </div>
 
       {/* Slide Indicators */}
